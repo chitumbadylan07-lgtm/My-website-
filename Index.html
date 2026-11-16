@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Fun Zone - By Dylan</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial}
+body{background:#111;color:white;text-align:center;padding:20px;min-height:100vh;transition:0.5s}
+h1{font-size:38px;margin:10px} h1 span{color:#ffd700}
+p{font-size:18px;opacity:.8}
+.box{background:white;color:#222;border-radius:20px;padding:30px;margin:20px auto;max-width:600px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.big{font-size:45px;margin:10px}
+.btn{border:none;padding:15px 25px;border-radius:50px;font-size:18px;font-weight:bold;cursor:pointer;margin:8px}
+.b1{background:#ffd700;color:#111}
+.b2{background:#ff4757;color:white}
+.b3{background:#2ed573;color:white}
+.b4{background:#1e90ff;color:white}
+.score{font-size:22px;font-weight:bold;margin-top:10px}
+</style>
+</head>
+<body id="body">
+
+<h1>🎲 RANDOM <span>FUN ZONE</span></h1>
+<p>Made by Dylan Chitumba - Click and see what happens!</p>
+
+<div class="box">
+<div class="big" id="emoji">🎲</div>
+<h2 id="text">Press a button below!</h2>
+<p id="sub">Something random will happen...</p>
+<div class="score" id="score">Score: 0 | Clicks: 0</div>
+</div>
+
+<button class="btn b1" onclick="randomAll()">🎲 RANDOM EVERYTHING</button><br>
+<button class="btn b2" onclick="randomJoke()">😂 RANDOM JOKE</button>
+<button class="btn b3" onclick="randomFood()">🍔 WHAT SHOULD I EAT?</button><br>
+<button class="btn b4" onclick="randomColor()">🎨 RANDOM COLOUR</button>
+<button class="btn b1" onclick="rollDice()">🎲 ROLL DICE</button>
+
+<br><br>
+<p>Share this with your friends - who gets the funniest joke?</p>
+
+<script>
+let score=0, clicks=0;
+let jokes=[
+"Why did the chicken cross the road? To get to Glenford School! 😂",
+"Teacher: Why are you late? Student: The bus was driving slow like in Dylan's website! 🚌",
+"What do you call a fish without eyes? A fsh! 🐟",
+"Why did the maths book look sad? It had too many problems! 📚",
+"Knock knock! Who's there? Dylan! Dylan who? Dylan the website boss! 👑",
+"In Harare, even the potholes have potholes! 😂",
+"Why did the phone go to school? To get smarter! 📱",
+"My computer told me a joke, but it was too BYTE-ful! 💻"
+];
+let foods=["Sadza + Beef 🥩","Sadza + Chicken 🍗","Chips + Chicken 🍟","Burger 🍔","Pizza 🍕","Rice + Beans 🍚","Boerewors Roll 🌭","Noodles 🍜","Go and eat at home, Mama cooked! 🏠"];
+let emojis=["😂","🤣","😎","🔥","🚀","🚌","⚽","🎮","🍕","👑","💎","🦁"];
+let colors=["#ff4757","#2ed573","#1e90ff","#ffa502","#eccc68","#ff6b81","#7bed9f","#70a1ff","#5352ed","#ff6348"];
+
+function updateScore(){
+  score+=10; clicks++;
+  document.getElementById('score').innerText = "Score: "+score+" | Clicks: "+clicks;
+}
+function randomJoke(){
+  let j = jokes[Math.floor(Math.random()*jokes.length)];
+  document.getElementById('emoji').innerText="😂";
+  document.getElementById('text').innerText=j;
+  document.getElementById('sub').innerText="Rate this joke 1-10 in your head!";
+  updateScore();
+}
+function randomFood(){
+  let f = foods[Math.floor(Math.random()*foods.length)];
+  document.getElementById('emoji').innerText="🍔";
+  document.getElementById('text').innerText=f;
+  document.getElementById('sub').innerText="That's your lunch today, no changing!";
+  updateScore();
+}
+function randomColor(){
+  let c = colors[Math.floor(Math.random()*colors.length)];
+  document.getElementById('body').style.background=c;
+  document.getElementById('emoji').innerText="🎨";
+  document.getElementById('text').innerText="New Colour!";
+  document.getElementById('sub').innerText="Background is now "+c;
+  updateScore();
+}
+function rollDice(){
+  let n = Math.floor(Math.random()*6)+1;
+  let dice = ["⚀","⚁","⚂","⚃","⚄","⚅"];
+  document.getElementById('emoji').innerText=dice[n-1];
+  document.getElementById('text').innerText="You rolled a "+n+"!";
+  document.getElementById('sub').innerText = n==6 ? "JACKPOT! You win! 🎉" : "Try again for 6!";
+  updateScore();
+}
+function randomAll(){
+  let pick = Math.floor(Math.random()*4);
+  if(pick==0) randomJoke();
+  else if(pick==1) randomFood();
+  else if(pick==2) randomColor();
+  else rollDice();
+  document.getElementById('emoji').innerText = emojis[Math.floor(Math.random()*emojis.length)];
+}
+</script>
+</body>
+</html>
